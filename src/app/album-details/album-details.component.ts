@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Album , List } from'../album';
-
-import { ALBUM_LISTS } from '../mock-albums';
+import { AlbumService } from '../album.service';
 
 @Component({
   selector: 'app-album-details',
@@ -14,16 +13,12 @@ export class AlbumDetailsComponent implements OnInit {
   // AlbumDetailsComponent
   @Output() onPlay: EventEmitter<Album> = new EventEmitter();
 
-  albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
+  // albumLists: List[] = ALBUM_LISTS; // récupération de la liste des chasons
   songs: List;
 
+  constructor(private albumService : AlbumService) { }
 
-
-  constructor() { }
-
-  ngOnInit() {
-
-   }
+  ngOnInit() {}
 
   // dès que quelque chose "rentre" dans le component enfant via une propriété Input
   // ou à l'initialisation du component (une fois) cette méthode est appelée
@@ -32,7 +27,7 @@ export class AlbumDetailsComponent implements OnInit {
     // des chansons.
     if(this.album){
       // récupération de la liste des chansons
-      this.songs = this.albumLists.find(elem => elem.id === this.album.id);
+      this.songs = this.albumService.getAlbumList(this.album.id);
     }
    
   }

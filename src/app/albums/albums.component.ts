@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Importez la définition de la classe et les albums
 import { Album } from'../album';
-import { ALBUMS } from'../mock-albums';
+import { AlbumService } from '../album.service';
 
 @Component({
   selector: 'app-albums',
@@ -12,16 +12,16 @@ import { ALBUMS } from'../mock-albums';
 export class AlbumsComponent implements OnInit {
 
   titlePage : string = "Page principale Albums Music";
-  albums:  Album[] = ALBUMS;
   selectedAlbum : Album;
   status : string = null;
 
-  constructor() { }
+  constructor(private albumService : AlbumService) {
+  }
 
   ngOnInit() {
-    if(this.albums)
+    if(this.albumService.getAlbums().length > 0)
     {
-      this.selectedAlbum = this.albums[0];
+      this.selectedAlbum = this.albumService.getAlbums()[0];
     }
   }
 
