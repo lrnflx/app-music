@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AlbumsComponent } from './albums/albums.component';
+import { AlbumDetailsComponent } from './album-details/album-details.component';
+import { DurationPipe } from './duration.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AlbumsComponent,
+    AlbumDetailsComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,
