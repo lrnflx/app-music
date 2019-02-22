@@ -8,7 +8,7 @@
     <!-- .video -->
     
     <div class="col-sm-8 music">
-      <h1>{{ titlePage }}</h1>
+      <h1>{{ titlePage }} {{albumService.count()}}</h1>
       <!-- Pagination -->
       <!-- let index permet de récupérer l'indice numérique de la liste -->
           <div class="card" *ngFor="let album of albumService.getAlbums(); let index = index;">
