@@ -1,6 +1,6 @@
 
 <app-search (searchAlbums)="searchUp($event)" ></app-search>
-
+<app-langues (selectedLangue)="changeLangue($event)" ></app-langues>
 <div class="row content">
   <!-- AlbumDetails -->
    <div class="col-sm-4 video">
@@ -27,7 +27,7 @@
                       <span class="badge badge-info">{{ word }}</span>
                     </li>
                   </ul>
-                    <a class="btn btn-outline-primary" href="#" role="button">fr</a>
+                    <a class="btn btn-outline-primary" href="#" role="button">{{ langue }}</a>
                     <img *ngIf="album.like"  class="glyph-icon" src="./assets/svg/si-glyph-heart.svg" />
                     <small *ngIf="album.like" >{{ album.like }}</small>
                     <img class="glyph-icon" src="./assets/svg/si-glyph-timer.svg" />

@@ -8,14 +8,15 @@ import { AlbumsComponent } from './albums/albums.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { DurationPipe } from './duration.pipe';
 import { SearchComponent } from './search/search.component';
-
+import { LanguesComponent } from './langues/langues.component';
 @NgModule({
   declarations: [
     AppComponent,
     AlbumsComponent,
     AlbumDetailsComponent,
     DurationPipe,
-    SearchComponent
+    SearchComponent,
+    LanguesComponent
   ],
   imports: [
     BrowserModule,

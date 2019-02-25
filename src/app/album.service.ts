@@ -63,6 +63,19 @@ export class AlbumService {
     }
   }
 
+  langue(word : string): string
+  {
+    let langue = ' '; 
+    if(word.includes('fr'))
+    { 
+      langue = 'français';
+    }else if(word.includes('en')){
+      langue = 'english';
+    }
+
+    return langue;
+  }
+
 
 
 }

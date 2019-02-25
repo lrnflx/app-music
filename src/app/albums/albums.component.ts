@@ -16,6 +16,7 @@ export class AlbumsComponent implements OnInit {
   selectedAlbum : Album;
   albums: Album[] = ALBUMS;
   status : string = null;
+  langue: string;
 
   constructor(private albumService : AlbumService) {
     //check de la méthode count()
@@ -29,7 +30,7 @@ export class AlbumsComponent implements OnInit {
     //   this.selectedAlbum = this.albumService.getAlbums()[0];
     // }
 
-    // this.albums = this.albumService.paginate(0,5);
+    this.albums = this.albumService.paginate(0,5);
 
   }
 
@@ -47,6 +48,10 @@ export class AlbumsComponent implements OnInit {
   searchUp($event){
     console.log($event);
     this.albums = $event;
+  }
+
+  changeLangue($event){
+    this.langue = $event;
   }
 
 }
