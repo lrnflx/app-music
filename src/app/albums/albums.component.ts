@@ -29,7 +29,7 @@ export class AlbumsComponent implements OnInit {
     //   this.selectedAlbum = this.albumService.getAlbums()[0];
     // }
 
-    this.albums = this.albumService.paginate(0,5);
+    // this.albums = this.albumService.paginate(0,5);
 
   }
 
@@ -42,6 +42,11 @@ export class AlbumsComponent implements OnInit {
   playParent($event){
     this.status = $event.id; //unique id
     console.log($event);
+  }
+
+  searchUp($event){
+    console.log($event);
+    this.albums = $event;
   }
 
 }

@@ -1,4 +1,5 @@
 
+<app-search (searchAlbums)="searchUp($event)" ></app-search>
 
 <div class="row content">
   <!-- AlbumDetails -->
@@ -11,7 +12,7 @@
       <h1>{{ titlePage }} {{albumService.count()}}</h1>
       <!-- Pagination -->
       <!-- let index permet de récupérer l'indice numérique de la liste -->
-          <div class="card" *ngFor="let album of albumService.getAlbums(); let index = index;">
+          <div class="card" *ngFor="let album of albums; let index = index;">
               <div class="card-header">
                 <!-- permet d'afficher l'index -->
                 {{ index + 1 }} Pop <span *ngIf="status==album.id"><i class="fas fa-play"></i></span>

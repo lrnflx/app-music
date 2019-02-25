@@ -4,6 +4,7 @@ import { ALBUMS, ALBUM_LISTS } from'./mock-albums';
 import { AlbumsComponent } from './albums/albums.component';
 import { sortBy } from 'sort-by-typescript';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ export class AlbumService {
 
   albums:  Album[] = ALBUMS;
   albumLists : List[] = ALBUM_LISTS;
+  
 
   constructor() { }
 
@@ -45,5 +47,22 @@ export class AlbumService {
       (a, b) => { return b.duration - a.duration }
     ).slice(start, end);
   }
+
+  search(word : string): Album[]
+  {
+    if(word.length > 2)
+    {
+      let response = [];
+      this.albums.forEach(album => {
+        if(album.title.includes(word))
+        {
+          response.push(album);
+        }
+      });
+      return response;
+    }
+  }
+
+
 
 }
