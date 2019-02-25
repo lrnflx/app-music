@@ -22,22 +22,28 @@ export class AlbumService {
     // });
 
     //méthode 2
-      this.albums.sort(sortBy('duration'));
-    
-    return this.albums;
+    return this.albums.sort(sortBy('- duration'));
   }
 
-  count() : number {
-    var result =  this.albums.length;
-    console.log(result);
-    return result;
-  }
 
-  getAlbum(id:string) : Album{
+  getAlbum(id: string): Album {
     return this.albums.find(elem => elem.id === id);
   }
 
-  getAlbumList(id:string) : List{
+  getAlbumList(id: string): List{
     return this.albumLists.find(elem => elem.id === id);
   }
+
+  count(): number {
+    
+    return this.albums.length;
+  }
+
+  paginate(start: number, end: number):Album[] {
+    // utilisez la méthode slice pour la pagination
+    return this.albums.sort(
+      (a, b) => { return b.duration - a.duration }
+    ).slice(start, end);
+  }
+
 }
