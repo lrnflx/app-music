@@ -1,4 +1,4 @@
-<div class="card" *ngIf="album">
+<div  [@myAnimation]="isActive ? 'open' : 'opening'" class="card" *ngIf="album" >
   <img *ngIf="album.url" class="card-img-top" src="{{album.url}}" alt="Group Music">
   <div class="card-body">
     <h5 class="card-title">{{ album.title }}</h5>
