@@ -31,10 +31,9 @@ export class AlbumDetailsComponent implements OnInit {
     }
    
   }
-
   // AlbumDetailsComponent
   play(album: Album) {
-  this.onPlay.emit(album); // émettre un album vers le parent
+    this.onPlay.emit(album); // émettre un album vers le parent
   }
 
 }

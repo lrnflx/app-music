@@ -1,3 +1,4 @@
+
 <div class="container-fluid principal">
   <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="#">{{ title }}</a>
@@ -6,23 +7,17 @@
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                  <a class="nav-link" href="#">Home
-                      <span class="sr-only">(current)</span>
-                  </a>
-              </li>
-              <li class="nav-item active">
-                  <a class="nav-link" href="#">Se connecter
-                      <span class="sr-only">(current)</span>
-                  </a>
-              </li>
-          </ul>
-      
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active">Se connecter
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" routerLink="/albums">Home</a>
+                </li>
+            </ul>
+        
       </div>
   </nav>
-  
-
-          
-          <app-albums></app-albums>
+     <router-outlet></router-outlet>
 </div>
