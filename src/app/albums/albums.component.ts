@@ -54,4 +54,11 @@ export class AlbumsComponent implements OnInit {
     this.langue = $event;
   }
 
+    // mise à jour de la pagination
+    paginate($event) {
+      this.albums = this.albumService.paginate($event.start, $event.end);
+    }
+
+
+
 }

@@ -14,6 +14,7 @@ import { AlbumDescriptionComponent } from './album-description/album-description
 import { LoginComponent } from './login/login.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PaginateComponent } from './paginate/paginate.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SearchComponent,
     LanguesComponent,
     AlbumDescriptionComponent,
-    LoginComponent
+    LoginComponent,
+    PaginateComponent
   ],
   imports: [
     BrowserModule,

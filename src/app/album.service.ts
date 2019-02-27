@@ -3,6 +3,7 @@ import { Album, List } from'./album';
 import { ALBUMS, ALBUM_LISTS } from'./mock-albums';
 import { AlbumsComponent } from './albums/albums.component';
 import { sortBy } from 'sort-by-typescript';
+import { environment } from '../environments/environment';
 
 
 @Injectable({
@@ -75,6 +76,14 @@ export class AlbumService {
 
     return langue;
   }
+
+  paginateNumberPage():number{
+    if ( typeof environment.numberPage == 'undefined' )
+      throw "Attention la pagination n'est pas définie" ;
+
+    return environment.numberPage ;
+  }
+
 
 
 

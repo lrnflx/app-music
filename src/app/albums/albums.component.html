@@ -10,7 +10,7 @@
     
     <div class="col-sm-8 music">
       <h1>{{ titlePage }} {{albumService.count()}}</h1>
-      <!-- Pagination -->
+      <app-paginate (setPaginate)="paginate($event)"></app-paginate>
       <!-- let index permet de récupérer l'indice numérique de la liste -->
           <div class="card" *ngFor="let album of albums; let index = index;">
               <div class="card-header">
@@ -36,7 +36,9 @@
                       <button (click)="onSelect(album)" class="btn btn-dark">Details</button>
                 </div>
             </div>
-        </div><!-- .card -->
+            <app-paginate (setPaginate)="paginate($event)"></app-paginate>
+      </div><!-- .card -->
+        
 </div>
 
   
