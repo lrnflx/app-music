@@ -4,6 +4,7 @@ import { ALBUMS, ALBUM_LISTS } from'./mock-albums';
 import { AlbumsComponent } from './albums/albums.component';
 import { sortBy } from 'sort-by-typescript';
 import { environment } from '../environments/environment';
+import { Subject } from 'rxjs';
 
 
 
@@ -14,9 +15,12 @@ export class AlbumService {
 
   albums:  Album[] = ALBUMS;
   albumLists : List[] = ALBUM_LISTS;
+  albumSubject = new Subject<Album>();
 
  
   constructor() { }
+
+
 
   getAlbums() : Album[]
   { 
@@ -86,9 +90,21 @@ export class AlbumService {
     return environment.numberPage ;
   }
 
+  switchOn(album: Album){
+    this.albums.forEach(a=>{
+      if(a.id === album.id) album.status = 'on';
+      else 
+        a.status = 'off';
+    }
+    )
+    this.albumSubject.next(album);
+  }
+
+  switchOff(album: Album){
+    this.albums.forEach(a=>
+      a.status = 'off'
+    )
+  }
+
   
-
-
-
-
 }

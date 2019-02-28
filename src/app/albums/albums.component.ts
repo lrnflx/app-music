@@ -43,6 +43,8 @@ export class AlbumsComponent implements OnInit {
   playParent($event){
     this.status = $event.id; //unique id
     console.log($event);
+    //Methode dans le service
+    this.albumService.switchOn($event);
   }
 
   searchUp($event){
@@ -54,10 +56,10 @@ export class AlbumsComponent implements OnInit {
     this.langue = $event;
   }
 
-    // mise à jour de la pagination
-    paginate($event) {
-      this.albums = this.albumService.paginate($event.start, $event.end);
-    }
+  // mise à jour de la pagination
+  paginate($event) {
+    this.albums = this.albumService.paginate($event.start, $event.end);
+  }
 
 
 

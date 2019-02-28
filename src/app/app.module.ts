@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginateComponent } from './paginate/paginate.component';
+import { AudioPlayerComponent } from './audio-player/audio-player.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { PaginateComponent } from './paginate/paginate.component';
     LanguesComponent,
     AlbumDescriptionComponent,
     LoginComponent,
-    PaginateComponent
+    PaginateComponent,
+    AudioPlayerComponent
   ],
   imports: [
     BrowserModule,
