@@ -6,6 +6,7 @@ import { sortBy } from 'sort-by-typescript';
 import { environment } from '../environments/environment';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +14,8 @@ export class AlbumService {
 
   albums:  Album[] = ALBUMS;
   albumLists : List[] = ALBUM_LISTS;
-  
 
+ 
   constructor() { }
 
   getAlbums() : Album[]
@@ -44,6 +45,7 @@ export class AlbumService {
 
   paginate(start: number, end: number):Album[] {
     // utilisez la méthode slice pour la pagination
+  
     return this.albums.sort(
       (a, b) => { return b.duration - a.duration }
     ).slice(start, end);
@@ -80,9 +82,11 @@ export class AlbumService {
   paginateNumberPage():number{
     if ( typeof environment.numberPage == 'undefined' )
       throw "Attention la pagination n'est pas définie" ;
-
+   
     return environment.numberPage ;
   }
+
+  
 
 
 

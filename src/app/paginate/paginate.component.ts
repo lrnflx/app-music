@@ -18,6 +18,7 @@ export class PaginateComponent implements OnInit {
 
   constructor(private aS: AlbumService) {
     this.perPage = this.aS.paginateNumberPage();
+
   }
 
   ngOnInit() {
