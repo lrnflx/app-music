@@ -12,7 +12,7 @@ export class PaginateComponent implements OnInit {
 
   pages: number[] = []; // pages num
   perPage: number; // number album(s) per page variable d'env 
-  total: number = 0; // total albums
+  total; // total albums
   numberPages: number = 0;
   currentPage: number;
 

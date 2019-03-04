@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Album, List } from'./album';
-import { ALBUMS, ALBUM_LISTS } from'./mock-albums';
-import { AlbumsComponent } from './albums/albums.component';
-import { sortBy } from 'sort-by-typescript';
+
 import { environment } from '../environments/environment';
 import { Subject, Observable } from 'rxjs';
 // Service et classe utile
@@ -28,8 +26,7 @@ export class AlbumService {
   private albumsUrl = 'https://app-music-3wa.firebaseio.com/albums';
   private albumListsUrl = 'https://app-music-3wa.firebaseio.com/albumLists';
 
-  albums:  Album[] = ALBUMS;
-  albumLists : List[] = ALBUM_LISTS;
+
   albumSubject = new Subject<Album>();
 
  
@@ -56,13 +53,17 @@ export class AlbumService {
       );
   }
 
-  getAlbumList(id: string): List{
-    return this.albumLists.find(elem => elem.id === id);
+  getAlbumList(id: string): Observable<List>{
+    return this.http.get<List>(this.albumListsUrl + `/${id}/.json`);
   }
 
-  count(): number {
+  count(): Observable<number> {
     
-    return this.albums.length;
+    return this.http.get<Album[]>(this.albumsUrl +  '/.json', httpOptions).pipe(
+      map(albumNbr => _.values(albumNbr)),
+      map(album => album.length
+    ))
+    ;
   }
 
   paginate(start: number, end: number): Observable<Album[]> {
@@ -89,20 +90,24 @@ export class AlbumService {
       )    
   }
 
-  search(word : string): Album[]
+  search(word : string): Observable<Album[]>
   {
-    if(word.length > 2)
-    {
-      let response = [];
-      this.albums.forEach(album => {
-        if(album.title.includes(word))
-        {
-          response.push(album);
-        }
-      });
-      return response;
+    return this.http.get<Album[]>(this.albumsUrl + '/.json', httpOptions).pipe(
+        map(albumList => {
+          //Préparation tableau vide dans lequel on va pusher ensuite les matchq
+          let search: Album[] = [];
+          //Préparation du word récupéré de l'input // trim retire les espaces en début et fin de chaine
+          let response = new RegExp('^' + word.trim())
+          //
+          _.forEach(albumList, (v,k) => {
+            // v.id = 
+            v.id = k;
+            if(v.title.match(response) != null) search.push(v);
+          })
+          return search;
+        })
+      )
     }
-  }
 
   langue(word : string): string
   {
@@ -125,20 +130,24 @@ export class AlbumService {
   }
 
   switchOn(album: Album){
-    this.albums.forEach(a=>{
-      if(a.id === album.id) album.status = 'on';
-      else 
-        a.status = 'off';
-    }
+    album.status = 'on';
+    this.http.put(this.albumsUrl + '/${album.id}/.json', album).subscribe(
+      e => e,
+      error => console.warn(error),
+      () => {
+        this.albumSubject.next(album);
+      }
     )
-    this.albumSubject.next(album);
+  
+    
   }
 
   switchOff(album: Album){
-    this.albums.forEach(a=>
-      a.status = 'off'
+    album.status = 'off';
+    this.http.put(this.albumsUrl + '/${album.id}/.json', album).subscribe(
+      e => e,
+      error => console.warn(error),
     )
   }
 
-  
 }

@@ -52,7 +52,8 @@ export class AlbumDetailsComponent implements OnInit {
     // des chansons.
     if(this.album){
       // récupération de la liste des chansons
-      this.songs = this.albumService.getAlbumList(this.album.id);
+      this.albumService.getAlbumList(this.album.id).subscribe(songObservable => this.songs = songObservable );
+      console.log(this.songs);
       this.isActive = false;
 
       const animate = setInterval(() => {

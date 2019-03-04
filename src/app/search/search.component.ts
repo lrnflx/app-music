@@ -17,13 +17,18 @@ export class SearchComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
+    
+
+   this.albumService.search(form.value['word']).subscribe(
+      albums => {
+        if(albums.length > 0 ){
+          this.searchAlbums.emit(albums);
+        }
   
-    const filtre = this.albumService.search(form.value['word']);
-
-    if (filtre){
-      this.searchAlbums.emit(filtre)
-    }
-
+      }
+     
+    );
+    
     console.log(form);
   }
 
