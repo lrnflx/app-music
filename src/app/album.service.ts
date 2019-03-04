@@ -4,38 +4,56 @@ import { ALBUMS, ALBUM_LISTS } from'./mock-albums';
 import { AlbumsComponent } from './albums/albums.component';
 import { sortBy } from 'sort-by-typescript';
 import { environment } from '../environments/environment';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+// Service et classe utile
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// Opérateurs de RxJS
+import { map } from 'rxjs/operators';
+// libraire utile pour le traitement de données
+import * as _ from 'lodash';
 
-
+// définition des headers
+const httpOptions = {
+  headers: new HttpHeaders({
+  'Content-Type': 'application/json',
+  })
+  };
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlbumService {
 
+  // convention dans l'API ajoutez votre identifant de base de données
+  private albumsUrl = 'https://app-music-3wa.firebaseio.com/albums';
+  private albumListsUrl = 'https://app-music-3wa.firebaseio.com/albumLists';
+
   albums:  Album[] = ALBUMS;
   albumLists : List[] = ALBUM_LISTS;
   albumSubject = new Subject<Album>();
 
  
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
+  getAlbums(): Observable<Album[]> {
+    
+      return this.http.get<Album[]>(this.albumsUrl + '/.json', httpOptions).pipe(
+        // Préparation des données avec _.values pour avoir un format exploitable dans l'application => Array de values JSON
+        map(albums => _.values(albums)),
+        // Ordonnez les albums par ordre de durées décroissantes
+        map(albums => {
+          return albums.sort(
+            (a, b) => { return b.duration - a.duration }
+          );
+        })
+      )
+    }
 
-
-  getAlbums() : Album[]
-  { 
-    //méthode 1 
-    // this.albums.sort((a, b) => {
-    //   return  b.duration - a.duration
-    // });
-
-    //méthode 2
-    return this.albums.sort(sortBy('- duration'));
-  }
-
-
-  getAlbum(id: string): Album {
-    return this.albums.find(elem => elem.id === id);
+  getAlbum(id: string): Observable<Album> {
+    // URL/ID/.json pour récupérer un album
+      return this.http.get<Album>(this.albumsUrl + `/${id}/.json`).pipe(
+        map(album => album) // JSON
+      );
   }
 
   getAlbumList(id: string): List{
@@ -47,12 +65,28 @@ export class AlbumService {
     return this.albums.length;
   }
 
-  paginate(start: number, end: number):Album[] {
-    // utilisez la méthode slice pour la pagination
-  
-    return this.albums.sort(
-      (a, b) => { return b.duration - a.duration }
-    ).slice(start, end);
+  paginate(start: number, end: number): Observable<Album[]> {
+    
+    return this.http.get<Album[]>(this.albumsUrl + '/.json', httpOptions).pipe(map(
+      albums => {
+        let Albums: Album[] = [];
+        _.forEach(albums, (v,k) =>
+          {
+            v.id = k;
+            Albums.push(v);
+          }
+          
+        ); return Albums
+      }),
+      map( albums => 
+        {
+          return albums.sort(
+            (a, b) => { return b.duration - a.duration }
+            ).slice(start, end);
+          
+        })
+
+      )    
   }
 
   search(word : string): Album[]

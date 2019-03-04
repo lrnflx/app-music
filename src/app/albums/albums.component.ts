@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 // Importez la définition de la classe et les albums
 import { Album } from'../album';
 import { AlbumService } from '../album.service';
-import { ALBUMS } from '../mock-albums';
 
 @Component({
   selector: 'app-albums',
@@ -14,7 +13,7 @@ export class AlbumsComponent implements OnInit {
 
   titlePage : string = "Page principale Albums Music";
   selectedAlbum : Album;
-  albums: Album[] = ALBUMS;
+  albums: Album[] = [];
   status : string = null;
   langue: string;
 
@@ -30,7 +29,7 @@ export class AlbumsComponent implements OnInit {
     //   this.selectedAlbum = this.albumService.getAlbums()[0];
     // }
 
-    this.albums = this.albumService.paginate(0,5);
+    this.albumService.paginate(0,5).subscribe(albums => this.albums = albums)
 
   }
 
@@ -58,9 +57,7 @@ export class AlbumsComponent implements OnInit {
 
   // mise à jour de la pagination
   paginate($event) {
-    this.albums = this.albumService.paginate($event.start, $event.end);
+   this.albumService.paginate($event.start, $event.end).subscribe(albums => this.albums = albums);
   }
-
-
 
 }
