@@ -28,7 +28,21 @@ export class AudioPlayerComponent implements OnInit {
         let duration = album.duration;
         this.totalSongs = Math.floor(duration / 120);
         this.ratio = Math.floor( 100 / this.totalSongs);
+        let step = this.ratio;
+
+        const timer = 120 * 1000; // toutes les 2 min passage à autre chanson
         
+        const player = setInterval(() => {
+          this.current++;
+          this.ratio += step; // on ajoute le ratio
+          console.log(this.ratio);
+          if (this.ratio > 100) {
+            clearInterval(player);
+            this.showplayer = false;
+            // mise à jour du status dans l'album
+            this.albumService.switchOff(album); // mise à jour d'album
+          }
+        }, timer)
       }
       )
   }
