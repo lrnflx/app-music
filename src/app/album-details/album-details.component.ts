@@ -62,13 +62,13 @@ export class AlbumDetailsComponent implements OnInit {
       },90)
 
     }
-
-   
   }
+
   // AlbumDetailsComponent
   play(album: Album) {
     this.onPlay.emit(album); // émettre un album vers le parent
-
   }
+  
+
 
 }

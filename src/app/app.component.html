@@ -7,14 +7,25 @@
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto" >
+                <li *ngIf="authService.isAuth; then logoutBlock else loginBlock"></li>
+                <ng-template #loginBlock>
                 <li class="nav-item active">
                     <a class="nav-link" routerLink="/login" routerLinkActive="active">Se connecter
                     </a>
                 </li>
+                </ng-template>
                 <li>
                     <a class="nav-link" routerLink="/albums">Home</a>
                 </li>
+                <li>
+                    <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+                </li>
+                <ng-template #logoutBlock>
+                <li>
+                    <a class="nav-link" routerLink="/logout">Se déconnecter</a>
+                </li>
+                </ng-template>
             </ul>
             <div class="navbar-right">
                 <p>connected for {{ time }} </p>

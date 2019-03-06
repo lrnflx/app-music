@@ -129,6 +129,7 @@ export class AlbumService {
     return environment.numberPage ;
   }
 
+  // ***********************************************
   switchOn(album: Album){
     album.status = 'on';
     this.http.put(this.albumsUrl + '/'+album.id+'.json', album).subscribe(
@@ -138,8 +139,6 @@ export class AlbumService {
         this.albumSubject.next(album);
       }
     )
-  
-    
   }
 
   switchOff(album: Album){
@@ -147,8 +146,15 @@ export class AlbumService {
     this.http.put(this.albumsUrl + '/'+album.id+'.json', album).subscribe(
       e => e,
       error => console.warn(error),
+      () => {
+        this.albumSubject.next(album);
+      }
     )
   }
+
+  // ***********************************************
+
+
 
   
 

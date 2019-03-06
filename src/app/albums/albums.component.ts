@@ -14,7 +14,7 @@ export class AlbumsComponent implements OnInit {
   titlePage : string = "Page principale Albums Music";
   selectedAlbum : Album;
   albums: Album[] = [];
-  status : string = null;
+  status : string;
   langue: string;
 
   constructor(private albumService : AlbumService) {
@@ -36,6 +36,9 @@ export class AlbumsComponent implements OnInit {
 
   onSelect(album: Album) {
     console.log(album);
+    if(this.selectedAlbum){
+      this.albumService.switchOff(this.selectedAlbum);
+    }
     this.selectedAlbum = album;
   }
 
@@ -60,4 +63,12 @@ export class AlbumsComponent implements OnInit {
    this.albumService.paginate($event.start, $event.end).subscribe(albums => this.albums = albums);
   }
 
+  //TO DO::::::::::::::SWITCHER ENTRE PLAY ET OFF 
+  onSwitch(album: Album){
+    if(album.status === 'on'){
+      this.albumService.switchOff(album);
+    }else if(this.status === 'off'){
+      this.albumService.switchOn(album);
+    }
+  }
 }

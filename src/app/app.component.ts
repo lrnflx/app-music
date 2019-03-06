@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Observable, Subscription } from 'rxjs';
 import { map, take} from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,8 @@ import { map, take} from 'rxjs/operators';
 export class AppComponent implements OnInit  {
   title = 'app-music';
   time;
+
+  constructor(private authService: AuthService){}
 
   ngOnInit(){
     const counter = interval(1000);
