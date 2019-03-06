@@ -131,7 +131,7 @@ export class AlbumService {
 
   switchOn(album: Album){
     album.status = 'on';
-    this.http.put(this.albumsUrl + '/${album.id}/.json', album).subscribe(
+    this.http.put(this.albumsUrl + '/'+album.id+'.json', album).subscribe(
       e => e,
       error => console.warn(error),
       () => {
@@ -144,10 +144,12 @@ export class AlbumService {
 
   switchOff(album: Album){
     album.status = 'off';
-    this.http.put(this.albumsUrl + '/${album.id}/.json', album).subscribe(
+    this.http.put(this.albumsUrl + '/'+album.id+'.json', album).subscribe(
       e => e,
       error => console.warn(error),
     )
   }
+
+  
 
 }
