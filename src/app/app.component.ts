@@ -33,10 +33,12 @@ export class AppComponent implements OnInit  {
         this.time = value
       );
       console.error();
-      
+    }
 
-   
+  logout(){
+    this.authService.logout();
   }
+
 
 
 }

@@ -13,6 +13,7 @@ export class GuardService implements CanActivate {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): any | boolean {
             if(this.aS.isAuth){
+                console.log('login...');
                 return true;
             }else{
                 this.router.navigate(['/login']);

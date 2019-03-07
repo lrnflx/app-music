@@ -29,10 +29,6 @@ const albumsRoutes: Routes = [
     path: 'dashboard', 
     canActivate: [GuardService],
     component: DashboardComponent
-    }, 
-    {
-    path: 'logout',
-    redirectTo: '/albums'
     }
 ];
 

@@ -1,6 +1,7 @@
 <div class="col-sm-6 offset-sm-3 mt-4">
-<form (ngSubmit)="onSignIn(loginForm)"
+<form (ngSubmit)="onSubmit(loginForm)"
       #loginForm ="ngForm" >
+      <p *ngIf="messageError">{{ messageError }}</p>
 <div class="form-inlin justify-content-center">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" required name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" ngModel>

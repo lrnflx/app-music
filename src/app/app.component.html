@@ -23,7 +23,8 @@
                 </li>
                 <ng-template #logoutBlock>
                 <li>
-                    <a class="nav-link" routerLink="/logout">Se déconnecter</a>
+                    <a class="nav-link"
+                    (click)="logout()">Se déconnecter</a>
                 </li>
                 </ng-template>
             </ul>

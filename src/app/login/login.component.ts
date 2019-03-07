@@ -10,6 +10,8 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  messageError: string = null;
+
   constructor(private authService: AuthService, private router: Router) {
   }
 
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  onSignIn(form: NgForm){
+  onSubmit(form: NgForm){
     console.log(form.value['email'])
     this.authService.authenticate(form.value['email'], form.value['password']).then(
       () => {
@@ -25,12 +27,10 @@ export class LoginComponent implements OnInit {
         this.authService.isAuth = true;
         this.router.navigate(['dashboard']);
       }
+    ).catch(
+      error => {
+        this.messageError = 'error Login or password'
+      }
     );
   }
-
-  onSignOut(){
-    this.authService.signOut();
-  }
-
-
 }
