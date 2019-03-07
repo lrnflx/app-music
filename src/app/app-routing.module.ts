@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GuardService } from './guard.service';
+import { AlbumComponent } from './admin/album/album.component';
 
 // définission de la constante pour les routes
 const albumsRoutes: Routes = [
@@ -29,8 +30,9 @@ const albumsRoutes: Routes = [
     path: 'dashboard', 
     canActivate: [GuardService],
     component: DashboardComponent
-    }
+    },
 ];
+
 
 
 @NgModule({

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       () => {
         console.log('Sign in successfull!');
         this.authService.isAuth = true;
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['admin']);
       }
     ).catch(
       error => {
