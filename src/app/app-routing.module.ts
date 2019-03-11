@@ -9,7 +9,7 @@ import { AlbumComponent } from './admin/album/album.component';
 
 // définission de la constante pour les routes
 const albumsRoutes: Routes = [
-  {
+    { 
     path: 'albums',
     component: AlbumsComponent
     },

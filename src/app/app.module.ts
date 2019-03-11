@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
+import { ShareModule } from './share/share.module';
 
 import { AppComponent } from './app.component';
 import { AlbumsComponent } from './albums/albums.component';
@@ -13,11 +14,11 @@ import { SearchComponent } from './search/search.component';
 import { LanguesComponent } from './langues/langues.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
 import { LoginComponent } from './login/login.component';
-import { PaginateComponent } from './paginate/paginate.component';
 import { AudioPlayerComponent } from './audio-player/audio-player.component';
 
 import * as firebase from 'firebase';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 // complétez avec vos propres identifiants
 const firebaseConfig = {
@@ -42,7 +43,6 @@ firebase.initializeApp(firebaseConfig);
     LanguesComponent,
     AlbumDescriptionComponent,
     LoginComponent,
-    PaginateComponent,
     AudioPlayerComponent,
     DashboardComponent
   ],
@@ -52,7 +52,8 @@ firebase.initializeApp(firebaseConfig);
     FormsModule, 
     BrowserAnimationsModule, 
     HttpClientModule,
-    AdminModule
+    AdminModule, 
+    ShareModule
   ],
   providers: [],
   bootstrap: [AppComponent]

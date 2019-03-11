@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   messageError: string = null;
 
   constructor(private authService: AuthService, private router: Router) {
+    if (this.authService.authenticated())
+      this.router.navigate(['/admin'], { queryParams: { message: 'Success'} });
   }
 
   ngOnInit() {

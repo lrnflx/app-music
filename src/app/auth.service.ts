@@ -10,16 +10,16 @@ import { Router } from '@angular/router';
 
 export class AuthService {
     
-    isAuth: boolean =false;
+    isAuth: boolean = false;
     
 constructor(private router: Router ) {
-    // firebase.auth().onAuthStateChanged( (user) => {
-    //         if (user) {
-    //             this.isAuth = true;
-    //         }else {
-    //             this.isAuth = null;
-    //         }
-    //     });
+    firebase.auth().onAuthStateChanged( (user) => {
+            if (user) {
+                this.isAuth = true;
+            }else {
+                this.isAuth = null;
+            }
+        });
      }
 
 // méthode d'authentification

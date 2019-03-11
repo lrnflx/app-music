@@ -28,6 +28,7 @@ export class AlbumService {
 
 
   albumSubject = new Subject<Album>();
+  sendCurrentNumberPage = new Subject<number>();
 
  
   constructor(private http: HttpClient) { }
@@ -122,11 +123,8 @@ export class AlbumService {
     return langue;
   }
 
-  paginateNumberPage():number{
-    if ( typeof environment.numberPage == 'undefined' )
-      throw "Attention la pagination n'est pas définie" ;
-   
-    return environment.numberPage ;
+  currentPage(page: number){
+    return this.sendCurrentNumberPage.next(page);
   }
 
   // ***********************************************

@@ -1,5 +1,5 @@
 <nav aria-label="Page navigation example">
-  <ul *ngIf="numberPages>1" class="pagination">
+  <ul *ngIf="numberPages > 1" class="pagination">
     <li [ngClass]="{'disabled' : currentPage == 1}" class="page-item">
       <a (click)="previous()" class="page-link">Previous</a>
     </li>

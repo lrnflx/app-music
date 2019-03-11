@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlbumComponent } from './album/album.component';
 import { RouterModule } from '@angular/router';
+import { ShareModule } from '../share/share.module';
 
 const adminRoutes = [
   {
@@ -15,7 +16,8 @@ const adminRoutes = [
         
   imports: [
     CommonModule,
-    RouterModule.forRoot(adminRoutes)
+    RouterModule.forRoot(adminRoutes),
+    ShareModule
 
   ]
 
