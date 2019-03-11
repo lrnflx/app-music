@@ -3,15 +3,28 @@ import { CommonModule } from '@angular/common';
 import { AlbumComponent } from './album/album.component';
 import { RouterModule } from '@angular/router';
 import { ShareModule } from '../share/share.module';
+import { GuardService } from '../guard.service';
+import { AddAlbumComponent } from './add-album/add-album.component';
+import { UpdateAlbumComponent } from './update-album/update-album.component';
+import { DeleteAlbumComponent } from './delete-album/delete-album.component';
 
 const adminRoutes = [
   {
     path: 'admin',
     component: AlbumComponent
+  }, 
+  {
+    path: 'admin/add', canActivate: [GuardService], component: AddAlbumComponent
+  }, 
+  {
+    path: 'admin/update/:id' ,canActivate: [GuardService], component: UpdateAlbumComponent
+  },
+  {
+    path: 'admin/delete/:id/:action' ,canActivate: [GuardService], component: DeleteAlbumComponent
   }
 ]
 @NgModule({
-  declarations: [AlbumComponent],
+  declarations: [AlbumComponent, AddAlbumComponent, UpdateAlbumComponent, DeleteAlbumComponent ],
   exports : [AlbumComponent, RouterModule],
         
   imports: [

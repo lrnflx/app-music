@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 // libraire utile pour le traitement de données
 import * as _ from 'lodash';
+import * as firebase from 'firebase';
 
 // définition des headers
 const httpOptions = {
@@ -43,7 +44,7 @@ export class AlbumService {
           return albums.sort(
             (a, b) => { return b.duration - a.duration }
           );
-        })
+        }),
       )
     }
 
@@ -151,7 +152,28 @@ export class AlbumService {
   }
 
   // ***********************************************
+  addAlbum(album: Album): Observable<any> {
+    return this.http.post<void>(this.albumsUrl + '/.json', album);
+  }
 
+  updateAlbum(ref: string, album: Album): Observable<void> {
+    console.log(ref);
+    return this.http.put<void>(this.albumsUrl + `/${ref}/.json`, album);
+  }
+
+  deleteAlbum(id: string): Observable<void> {
+    return this.http.delete<void>(this.albumsUrl + `/${id}/.json`);
+  }
+
+  uploadFile(file: File) {
+
+    const randomId = Math.random().toString(36).substring(2);
+    const ref = firebase.app().storage("gs://music-60f33.appspot.com").ref();
+    const imagesRef = ref.child('images');
+
+    return imagesRef.child(randomId + '.png').put(file);
+    
+  }
 
 
   
