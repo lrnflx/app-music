@@ -7,6 +7,7 @@ import { GuardService } from '../guard.service';
 import { AddAlbumComponent } from './add-album/add-album.component';
 import { UpdateAlbumComponent } from './update-album/update-album.component';
 import { DeleteAlbumComponent } from './delete-album/delete-album.component';
+import { DialogComponent } from './modal/dialog/dialog.component';
 
 const adminRoutes = [
   {
@@ -24,14 +25,13 @@ const adminRoutes = [
   }
 ]
 @NgModule({
-  declarations: [AlbumComponent, AddAlbumComponent, UpdateAlbumComponent, DeleteAlbumComponent ],
+  declarations: [AlbumComponent, AddAlbumComponent, UpdateAlbumComponent, DeleteAlbumComponent, DialogComponent ],
   exports : [AlbumComponent, RouterModule],
         
   imports: [
     CommonModule,
     RouterModule.forRoot(adminRoutes),
     ShareModule
-
   ]
 
 })

@@ -20,6 +20,7 @@ import * as firebase from 'firebase';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
+
 // complétez avec vos propres identifiants
 const firebaseConfig = {
   apiKey: "AIzaSyBU6KGXYzzgBi_O_UY0nYlv9gUhshJRuqQ",
@@ -44,7 +45,7 @@ firebase.initializeApp(firebaseConfig);
     AlbumDescriptionComponent,
     LoginComponent,
     AudioPlayerComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

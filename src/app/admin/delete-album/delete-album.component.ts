@@ -13,6 +13,7 @@ export class DeleteAlbumComponent implements OnInit {
     private route: ActivatedRoute, private aS: AlbumService) { }
 
   ngOnInit() {
+    console.log(this.route.snapshot.paramMap.get('id'));
     if (
       this.route.snapshot.paramMap.get('id') &&
       this.route.snapshot.paramMap.get('action')

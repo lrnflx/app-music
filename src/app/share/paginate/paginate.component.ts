@@ -16,9 +16,7 @@ export class PaginateComponent implements OnInit {
   numberPages: number = 0;
   currentPage: number;
 
-  constructor(private aS: AlbumService) {
-
-  }
+  constructor(private aS: AlbumService) {}
 
   ngOnInit() {
     this.init();
@@ -26,6 +24,7 @@ export class PaginateComponent implements OnInit {
     this.aS.sendCurrentNumberPage.subscribe(numberPage => {
         this.currentPage = numberPage;
         this.init(this.currentPage);
+        console.log(this.currentPage); //
     });
   }
 
@@ -51,13 +50,16 @@ export class PaginateComponent implements OnInit {
 
   }
 
+
   next() {
     if (this.currentPage >= this.numberPages) {
       this.currentPage = 1;
     } else {
       this.currentPage++;
     }
+    this.aS.currentPage(this.currentPage); // mettre à jour les autres components paginate
     this.setPaginate.emit(this.paginate(this.currentPage)); // émettre la page courante
+
   }
 
   previous() {
@@ -66,6 +68,7 @@ export class PaginateComponent implements OnInit {
     } else {
       this.currentPage--;
     }
+    this.aS.currentPage(this.currentPage);
     this.setPaginate.emit(this.paginate(this.currentPage));
 
   }

@@ -38,7 +38,9 @@ export class AlbumService {
     
       return this.http.get<Album[]>(this.albumsUrl + '/.json', httpOptions).pipe(
         // Préparation des données avec _.values pour avoir un format exploitable dans l'application => Array de values JSON
-        map(albums => _.values(albums)),
+        map(albums => { 
+          return _.values(albums) 
+        }),
         // Ordonnez les albums par ordre de durées décroissantes
         map(albums => {
           return albums.sort(
@@ -72,14 +74,19 @@ export class AlbumService {
     
     return this.http.get<Album[]>(this.albumsUrl + '/.json', httpOptions).pipe(map(
       albums => {
+        console.log(albums);
         let Albums: Album[] = [];
         _.forEach(albums, (v,k) =>
-          {
-            v.id = k;
-            Albums.push(v);
+          { 
+            if(v){
+              v.id = k;
+              Albums.push(v);
+            }
+
           }
           
-        ); return Albums
+        ); 
+        return Albums
       }),
       map( albums => 
         {
